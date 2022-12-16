@@ -1,0 +1,36 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest # Microsoft hosted-pool
+
+stages:
+ - stage: Setup
+   jobs:
+   - job: SetupGolang
+     steps:
+     - task: GoTool@0
+       inputs:
+        version: '1.19'
+ 
+ - stage: Test
+   jobs:
+   - job: Test
+     steps:
+     - task: Go@0
+       inputs:
+        command: 'test'
+ 
+ - stage: Build
+   jobs:
+   - job: Build
+     steps:
+     - task: Go@0
+       inputs:
+        command: 'build'
+        arguments: '-o bin/simple-server'

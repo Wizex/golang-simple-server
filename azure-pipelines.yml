@@ -36,6 +36,6 @@ stages:
         arguments: '-o bin/simple-server'
      - task: PublishBuildArtifacts@1
        inputs:
-         PathtoPublish: '$(Build.ArtifactStagingDirectory)/bin/'
+         PathtoPublish: 'bin/'
          ArtifactName: 'simple-server'
          publishLocation: 'Container'
